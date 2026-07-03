@@ -12,33 +12,16 @@ import EventKitUI
 
 final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     private var eventStore = EKEventStore()
-    private var newsView: NewsView!
-    private var newsTimer: Timer?
-    private var currentNewsIndex = 0
-    private var newsItems: [News] = [] // Inițializăm cu un array gol, va fi populat din API sau mock data
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Calendar"
 
         requestAccessToCalendar()
-        setupNewsView()
-        loadNewsData() // Încărcăm datele știrilor
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-        newsTimer?.invalidate()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startNewsTimer()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        newsTimer?.invalidate() // Oprim timer-ul când vizualizarea dispare
     }
 
     // MARK: - Calendar Setup
@@ -83,50 +66,6 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
 
     @objc private func storeChanged(_ notification: Notification) {
         reloadData()
-    }
-
-    // MARK: - News Section Setup
-    private func setupNewsView() {
-        newsView = NewsView()
-        newsView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(newsView)
-
-        NSLayoutConstraint.activate([
-            newsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            newsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            newsView.heightAnchor.constraint(equalToConstant: 150) // Înălțimea panoului de știri
-        ])
-    }
-
-    private func loadNewsData() {
-        // Aici poți încărca datele știrilor de la un API sau folosi mock data
-        newsItems = [
-            News(image: UIImage(systemName: "newspaper"), title: "Știre 1", description: "Descriere știre 1"),
-            News(image: UIImage(systemName: "calendar.badge.clock"), title: "Știre 2", description: "Descriere știre 2"),
-            News(image: UIImage(systemName: "bell"), title: "Știre 3", description: "Descriere știre 3")
-        ]
-        updateNewsView() // Afișăm prima știre imediat după încărcare
-    }
-
-    private func startNewsTimer() {
-        newsTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
-            self?.updateNewsView()
-        }
-    }
-
-    private func updateNewsView() {
-        guard !newsItems.isEmpty else { return }
-
-        let news = newsItems[currentNewsIndex]
-
-        // Animația de schimbare a știrii
-        UIView.transition(with: newsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.newsView.configure(with: news)
-        }, completion: nil)
-
-        // Trecem la următoarea știre
-        currentNewsIndex = (currentNewsIndex + 1) % newsItems.count
     }
 
     // MARK: - CalendarKit Overrides
