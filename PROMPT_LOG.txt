@@ -19,3 +19,5 @@ This file logs prompts given to Claude Code on this project, in order.
 [2026-07-03] What new and interesting features can we add to this application?
 
 [2026-07-03] lets do Week/Month view toggle on a new branch
+
+[2026-07-03] [shared screenshot of the "Știre 2" mock news panel] on a new branch, can you delete this function?
