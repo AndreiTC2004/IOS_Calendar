@@ -15,3 +15,7 @@ This file logs prompts given to Claude Code on this project, in order.
 [2026-07-03] now i would like to delete all the old files from that repo and add the new ones to work on them. also ples update pompt_log.txt
 
 [2026-07-03] now i would like to review every single file from this project. offer me a score. Then tell me all bugs that you find and make the code perfect
+
+[2026-07-03] What new and interesting features can we add to this application?
+
+[2026-07-03] lets do Week/Month view toggle on a new branch

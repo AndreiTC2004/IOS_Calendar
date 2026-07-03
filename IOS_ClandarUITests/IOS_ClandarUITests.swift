@@ -32,6 +32,33 @@ final class IOS_ClandarUITests: XCTestCase {
     }
 
     @MainActor
+    func testDayWeekMonthToggle() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let segmentedControl = app.segmentedControls.firstMatch
+        XCTAssertTrue(segmentedControl.waitForExistence(timeout: 5))
+
+        segmentedControl.buttons["Week"].tap()
+        XCTAssertTrue(app.tables.firstMatch.waitForExistence(timeout: 5))
+        attachScreenshot(from: app, named: "Week View")
+
+        segmentedControl.buttons["Month"].tap()
+        XCTAssertTrue(app.collectionViews.firstMatch.waitForExistence(timeout: 5))
+        attachScreenshot(from: app, named: "Month View")
+
+        segmentedControl.buttons["Day"].tap()
+        attachScreenshot(from: app, named: "Day View")
+    }
+
+    private func attachScreenshot(from app: XCUIApplication, named name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    @MainActor
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
