@@ -303,6 +303,7 @@
 				INFOPLIST_FILE = IOS_Clandar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "The app needs access to the calendar to display and manage your events";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app needs access to the calendar to display events";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -333,6 +334,7 @@
 				INFOPLIST_FILE = IOS_Clandar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "The app needs access to the calendar to display and manage your events";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app needs access to the calendar to display events";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
