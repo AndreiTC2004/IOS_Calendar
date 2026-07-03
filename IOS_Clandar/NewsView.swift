@@ -26,9 +26,12 @@ final class NewsView: UIView {
     private func setupView() {
         backgroundColor = .systemBackground
         
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
+        imageView.tintColor = .secondaryLabel
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         titleLabel.numberOfLines = 2
