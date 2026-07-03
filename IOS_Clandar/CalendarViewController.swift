@@ -28,6 +28,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+        newsTimer?.invalidate()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,9 +46,12 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, error in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                self.initializeStore()
                 self.subscribeToNotifications()
                 self.reloadData()
+
+                if !granted {
+                    self.presentCalendarAccessDeniedAlert()
+                }
             }
         }
 
@@ -65,8 +69,16 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
                                                object: eventStore)
     }
 
-    private func initializeStore() {
-        eventStore = EKEventStore()
+    private func presentCalendarAccessDeniedAlert() {
+        let alert = UIAlertController(title: "Calendar Access Needed",
+                                       message: "Enable calendar access in Settings to view and manage your events.",
+                                       preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingsURL)
+        })
+        present(alert, animated: true)
     }
 
     @objc private func storeChanged(_ notification: Notification) {
@@ -158,7 +170,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
 
         var components = DateComponents()
         components.hour = 1
-        let endDate = calendar.date(byAdding: components, to: date)
+        let endDate = calendar.date(byAdding: components, to: date) ?? date.addingTimeInterval(3600)
 
         newEKEvent.startDate = date
         newEKEvent.endDate = endDate
