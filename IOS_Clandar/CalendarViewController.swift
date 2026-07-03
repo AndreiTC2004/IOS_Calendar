@@ -22,13 +22,10 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         title = "Calendar"
 
         requestAccessToCalendar()
+        subscribeToNotifications()
         setupNewsView()
         loadNewsData() // Încărcăm datele știrilor
         startNewsTimer()
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,9 +83,9 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     private func loadNewsData() {
         // Aici poți încărca datele știrilor de la un API sau folosi mock data
         newsItems = [
-            News(image: UIImage(systemName: "newspaper"), title: "Știre 1", description: "Descriere știre 1"),
-            News(image: UIImage(systemName: "calendar.badge.clock"), title: "Știre 2", description: "Descriere știre 2"),
-            News(image: UIImage(systemName: "bell"), title: "Știre 3", description: "Descriere știre 3")
+            News(image: UIImage(named: "news1"), title: "Știre 1", description: "Descriere știre 1"),
+            News(image: UIImage(named: "news2"), title: "Știre 2", description: "Descriere știre 2"),
+            News(image: UIImage(named: "news3"), title: "Știre 3", description: "Descriere știre 3")
         ]
         updateNewsView() // Afișăm prima știre imediat după încărcare
     }
@@ -119,9 +116,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         let startDate = date
         var oneDayComponents = DateComponents()
         oneDayComponents.day = 1
-        guard let endDate = calendar.date(byAdding: oneDayComponents, to: startDate) else {
-            return []
-        }
+        let endDate = calendar.date(byAdding: oneDayComponents, to: startDate)!
 
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
         let eventKitEvents = eventStore.events(matching: predicate)
@@ -180,22 +175,10 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
             if originalEvent === editingEvent {
                 presentEditingViewForEvent(editingEvent.ekEvent)
             } else {
-                do {
-                    try eventStore.save(editingEvent.ekEvent, span: .thisEvent)
-                } catch {
-                    presentSaveErrorAlert(error)
-                }
+                try! eventStore.save(editingEvent.ekEvent, span: .thisEvent)
             }
         }
         reloadData()
-    }
-
-    private func presentSaveErrorAlert(_ error: Error) {
-        let alert = UIAlertController(title: "Couldn't Save Event",
-                                       message: error.localizedDescription,
-                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 
     private func presentEditingViewForEvent(_ ekEvent: EKEvent) {

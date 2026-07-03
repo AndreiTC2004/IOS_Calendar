@@ -46,8 +46,7 @@ final class EKWrapper: EventDescriptor {
     
     public var color: UIColor {
         get {
-            guard let cgColor = ekEvent.calendar?.cgColor else { return .systemBlue }
-            return UIColor(cgColor: cgColor)
+            UIColor(cgColor: ekEvent.calendar.cgColor)
         }
     }
     
