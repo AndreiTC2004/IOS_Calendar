@@ -16,7 +16,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let rootViewController = CalendarViewController()
+        let rootViewController = CalendarContainerViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         let appearance = UINavigationBarAppearance()
