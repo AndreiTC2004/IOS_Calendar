@@ -24,11 +24,15 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         requestAccessToCalendar()
         setupNewsView()
         loadNewsData() // Încărcăm datele știrilor
-        startNewsTimer()
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startNewsTimer()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,7 +107,6 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         guard !newsItems.isEmpty else { return }
 
         let news = newsItems[currentNewsIndex]
-        newsView.configure(with: news)
 
         // Animația de schimbare a știrii
         UIView.transition(with: newsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
