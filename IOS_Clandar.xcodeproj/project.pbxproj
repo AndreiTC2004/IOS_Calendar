@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B030143B2D21EB1000E931EC /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = B030143A2D21EB1000E931EC /* CalendarKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B030141A2D21E5E800E931EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B030143B2D21EB1000E931EC /* CalendarKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = IOS_Clandar;
 			packageProductDependencies = (
+				B030143A2D21EB1000E931EC /* CalendarKit */,
 			);
 			productName = IOS_Clandar;
 			productReference = B03014032D21E5E700E931EC /* IOS_Clandar.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = B03013FA2D21E5E700E931EC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B03014392D21EB1000E931EC /* XCRemoteSwiftPackageReference "CalendarKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B03014042D21E5E700E931EC /* Products */;
 			projectDirPath = "";
@@ -292,9 +301,12 @@
 				DEVELOPMENT_TEAM = A8Y34895L9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOS_Clandar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "The app needs access to the calendar to display and manage your events";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app needs access to the calendar to display events";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,9 +332,12 @@
 				DEVELOPMENT_TEAM = A8Y34895L9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOS_Clandar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "The app needs access to the calendar to display and manage your events";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app needs access to the calendar to display events";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -569,6 +584,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B03014392D21EB1000E931EC /* XCRemoteSwiftPackageReference "CalendarKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richardtop/CalendarKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B030143A2D21EB1000E931EC /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B03014392D21EB1000E931EC /* XCRemoteSwiftPackageReference "CalendarKit" */;
+			productName = CalendarKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B03013FB2D21E5E700E931EC /* Project object */;
 }

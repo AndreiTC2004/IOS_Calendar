@@ -1,0 +1,9 @@
+Prompt history for IOS_Clandar / IOS_Calendar project
+======================================================
+This file logs prompts given to Claude Code on this project, in order.
+
+[2026-07-03] do u see the project? Its an 1:1 ios calendar app
+
+[2026-07-03] On AndreiTC2004 github is a repo called "iOS_Calendar" i want you to work there
+
+[2026-07-03] I want you to first do a code review. Then, on a new branch, fix all the bugs you find. Finally, you can come up with suggestions for new features to implement. In addition, I would like to create a new .txt file in which you can memorize all the prompts that I will give you on this project.
